@@ -12,15 +12,17 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const contacts = localStorage.getItem("contacts");
+    const contacts = localStorage.getItem('contacts');
     const parsedContacts = JSON.parse(contacts);
-    this.setState({ contacts: parsedContacts});
+    this.setState({ contacts: parsedContacts });
   }
 
   componentDidUpdate(prevProps, prevState) {
-
-    if(prevState.contacts.length !== this.state.contacts.length){
-      return localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+    if (prevState.contacts.length !== this.state.contacts.length) {
+      return localStorage.setItem(
+        'contacts',
+        JSON.stringify(this.state.contacts)
+      );
     }
   }
 
@@ -39,14 +41,13 @@ class App extends Component {
       const filteredContact = prevState.contacts.find(
         ({ name }) => name.toLowerCase() === contact.name.toLowerCase()
       );
-  
+
       return filteredContact
         ? alert(`${contact.name} is already in contacts`)
-        : (
-          evt.target.reset(), 
+        : (evt.target.reset(),
           {
             contacts: [contact, ...prevState.contacts],
-          } );
+          });
     });
   };
 
